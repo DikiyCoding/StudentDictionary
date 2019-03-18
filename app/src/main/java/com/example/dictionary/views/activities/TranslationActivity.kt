@@ -1,18 +1,27 @@
 package com.example.dictionary.views.activities
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.RecyclerView
 import android.view.View
-import android.widget.AdapterView
+import android.widget.SpinnerAdapter
+import com.arellomobile.mvp.MvpAppCompatActivity
+import com.arellomobile.mvp.presenter.InjectPresenter
+import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.example.dictionary.R
-import com.example.dictionary.contracts.ContractTranslation
 import com.example.dictionary.presenters.pojos.InfoLanguage
 import com.example.dictionary.presenters.presenters.TranslationPresenter
+import com.example.dictionary.views.interfaces.ViewTranslation
 import kotlinx.android.synthetic.main.activity_translation.*
 
-class TranslationActivity : AppCompatActivity(), ContractTranslation.View, AdapterView.OnItemSelectedListener {
+class TranslationActivity : MvpAppCompatActivity(), ViewTranslation {
 
-    private var presenter: ContractTranslation.Presenter? = null
+    @InjectPresenter
+    lateinit var presenter: TranslationPresenter
+
+    @ProvidePresenter
+    fun provideTranslationPresenter(): TranslationPresenter {
+        return TranslationPresenter()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,32 +29,23 @@ class TranslationActivity : AppCompatActivity(), ContractTranslation.View, Adapt
         init()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        presenter?.detachView()
-    }
-
-    override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-        presenter?.itemSelected(parent, view, position, id)
-    }
-
-    override fun onNothingSelected(parent: AdapterView<*>) {}
-
     override fun setTranslation(translation: String) {
         et_trans_to.setText(translation)
     }
 
-    private fun init() {
-        presenter = TranslationPresenter(this)
-        spin_transl_from.adapter = presenter?.getAdapter("adapterFrom")
-        spin_transl_to.adapter = presenter?.getAdapter("adapterTo")
-        spin_transl_from.onItemSelectedListener = this
-        presenter?.viewIsReady()
+    fun translate(view: View) {
+        presenter.translate(
+            et_trans_from.text.toString(),
+            (spin_transl_from.selectedItem as InfoLanguage),
+            (spin_transl_to.selectedItem as InfoLanguage)
+        )
     }
 
-    public fun translate(view: View) {
-        presenter?.translate(et_trans_from.text.toString(),
-                (spin_transl_from.selectedItem as InfoLanguage).langSign,
-                (spin_transl_to.selectedItem as InfoLanguage).langSign)
+    private fun init() {
+        spin_transl_from.adapter = presenter.getAdapter("adapterFrom") as SpinnerAdapter?
+        spin_transl_from.onItemSelectedListener = presenter
+        spin_transl_to.adapter = presenter.getAdapter("adapterTo") as SpinnerAdapter?
+        list_translations.adapter = presenter.getAdapter("adapterCache") as RecyclerView.Adapter<*>?
+        presenter.viewIsReady()
     }
 }

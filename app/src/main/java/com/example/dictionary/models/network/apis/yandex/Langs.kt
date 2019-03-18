@@ -7,8 +7,7 @@ class Langs {
 
     @SerializedName("af")
     @Expose
-    val af: String? = null
-
+    var af: String? = null
     @SerializedName("am")
     @Expose
     var am: String? = null

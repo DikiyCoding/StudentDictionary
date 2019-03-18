@@ -1,0 +1,37 @@
+package com.example.dictionary.presenters.adapters
+
+import android.arch.paging.PagedListAdapter
+import android.support.v7.util.DiffUtil
+import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.example.dictionary.R
+import com.example.dictionary.presenters.pojos.InfoTranslation
+import kotlinx.android.synthetic.main.item_translation.view.*
+
+class DictionaryAdapter(diffUtilCallback: DiffUtil.ItemCallback<InfoTranslation>) :
+    PagedListAdapter<InfoTranslation, DictionaryAdapter.ViewHolder>(diffUtilCallback) {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item_translation, parent, false)
+        view.btn_save.visibility = View.GONE
+        view.btn_delete.visibility = View.GONE
+        return ViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val info: InfoTranslation? = getItem(position)
+        holder.tvLangFrom.text = info!!.langFrom
+        holder.tvLangTo.text = info.langTo
+        holder.tvValueFrom.text = info.valueFrom
+        holder.tvValueTo.text = info.valueTo
+    }
+
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val tvLangFrom = view.tv_lang_from!!
+        val tvLangTo = view.tv_lang_to!!
+        val tvValueFrom = view.tv_value_from!!
+        val tvValueTo = view.tv_value_to!!
+    }
+}
