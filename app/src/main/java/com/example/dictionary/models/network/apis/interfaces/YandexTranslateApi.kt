@@ -11,8 +11,15 @@ import retrofit2.http.Query
 interface YandexTranslateApi {
 
     @GET(Constants.YANDEX_LANGS_AVAILABLE)
-    fun getLangs(@Query("key") KEY: String, @Query("ui") ui: String): Single<LangsAvailable>
+    fun getLangs(
+        @Query("key") KEY: String,
+        @Query("ui") ui: String
+    ): Single<LangsAvailable>
 
     @GET(Constants.YANDEX_TRANSLATION)
-    fun translate(@Query("key") KEY: String, @Query("text") text: String, @Query("lang") lang: String): Single<Translation>
+    fun translate(
+        @Query("key") KEY: String,
+        @Query("text") text: String,
+        @Query("lang") lang: String
+    ): Single<Translation>
 }

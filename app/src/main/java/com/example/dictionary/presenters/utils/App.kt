@@ -31,8 +31,6 @@ class App : Application() {
     companion object {
         lateinit var instance: App
             private set
-        fun appContext() : Context {
-            return instance.applicationContext
-        }
+        fun appContext(): Context = instance.applicationContext
     }
 }

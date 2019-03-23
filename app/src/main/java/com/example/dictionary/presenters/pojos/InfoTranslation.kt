@@ -14,7 +14,6 @@ class InfoTranslation(
     var langTo: String,
     @ColumnInfo(name = "is_saved")
     var isSaved: Boolean) {
-    fun isSame(other: InfoTranslation): Boolean {
-        return other.valueFrom == valueFrom && other.valueTo == valueTo
-    }
+    fun isSame(other: InfoTranslation): Boolean =
+        other.valueFrom == valueFrom && other.valueTo == valueTo
 }

@@ -19,9 +19,7 @@ class TranslationActivity : MvpAppCompatActivity(), ViewTranslation {
     lateinit var presenter: TranslationPresenter
 
     @ProvidePresenter
-    fun provideTranslationPresenter(): TranslationPresenter {
-        return TranslationPresenter()
-    }
+    fun provideTranslationPresenter(): TranslationPresenter = TranslationPresenter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,8 +34,8 @@ class TranslationActivity : MvpAppCompatActivity(), ViewTranslation {
     fun translate(view: View) {
         presenter.translate(
             et_trans_from.text.toString(),
-            (spin_transl_from.selectedItem as InfoLanguage),
-            (spin_transl_to.selectedItem as InfoLanguage)
+            spin_transl_from.selectedItem as InfoLanguage,
+            spin_transl_to.selectedItem as InfoLanguage
         )
     }
 

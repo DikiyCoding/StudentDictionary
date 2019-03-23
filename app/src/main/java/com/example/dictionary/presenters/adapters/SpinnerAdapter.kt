@@ -9,7 +9,11 @@ import android.widget.TextView
 
 import com.example.dictionary.presenters.pojos.InfoLanguage
 
-class SpinnerAdapter(context: Context, resource: Int, private val list: List<InfoLanguage>) : ArrayAdapter<InfoLanguage>(context, resource, list) {
+class SpinnerAdapter(
+    context: Context,
+    resource: Int,
+    private val list: List<InfoLanguage>
+) : ArrayAdapter<InfoLanguage>(context, resource, list) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val view = super.getView(position, convertView, parent)

@@ -10,44 +10,25 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiFactory {
 
-    private var client: OkHttpClient? = null
-    @Volatile
-    private var yandexApi: YandexTranslateApi? = null
-    @Volatile
-    private var oxfordApi: OxfordDictionariesApi? = null
+    private val client: OkHttpClient
+    private val yandexApi: YandexTranslateApi
+//    private val oxfordApi: OxfordDictionariesApi
+
+    init {
+        client = buildClient()
+        yandexApi = buildRetrofit(Constants.YANDEX_BASE_URL).create(YandexTranslateApi::class.java)
+//        oxfordApi = buildRetrofit("Oxford url").create(OxfordDictionariesApi::class.java)
+    }
 
     fun getYandexApi(): YandexTranslateApi {
-        var service = yandexApi
-        if (service == null)
-            synchronized(ApiFactory::class.java) {
-                service = yandexApi
-                if (service == null) {
-                    yandexApi = buildRetrofit(Constants.YANDEX_BASE_URL).create(YandexTranslateApi::class.java)
-                    service = yandexApi
-                }
-            }
-        return service!!
+//        val service = yandexApi
+        return yandexApi
     }
 
-    fun getOxfordApi(): OxfordDictionariesApi {
-        var service = oxfordApi
-        if (service == null)
-            synchronized(ApiFactory::class.java) {
-                service = oxfordApi
-                if (service == null) {
-                    oxfordApi = buildRetrofit(Constants.YANDEX_BASE_URL).create(OxfordDictionariesApi::class.java)
-                    service = oxfordApi
-                }
-            }
-        return service!!
-    }
-
-    fun recreate() {
-        client = null
-        client = getClient()
-        yandexApi = buildRetrofit(Constants.YANDEX_BASE_URL).create(YandexTranslateApi::class.java)
-        oxfordApi = buildRetrofit("Oxford url").create(OxfordDictionariesApi::class.java)
-    }
+    /*fun getOxfordApi(): OxfordDictionariesApi {
+        val service = oxfordApi
+        return oxfordApi
+    }*/
 
     private fun buildRetrofit(url: String): Retrofit {
         return Retrofit.Builder()
@@ -59,16 +40,8 @@ object ApiFactory {
     }
 
     private fun getClient(): OkHttpClient {
-        var client = ApiFactory.client
-        if (client == null)
-            synchronized(ApiFactory::class.java) {
-                client = ApiFactory.client
-                if (client == null) {
-                    ApiFactory.client = buildClient()
-                    client = ApiFactory.client
-                }
-            }
-        return client!!
+        val client = ApiFactory.client
+        return client
     }
 
     private fun buildClient(): OkHttpClient {

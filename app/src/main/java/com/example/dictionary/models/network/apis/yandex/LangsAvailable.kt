@@ -7,8 +7,8 @@ class LangsAvailable {
 
     @SerializedName("dirs")
     @Expose
-    var dirs: List<String>? = null
+    lateinit var dirs: List<String>
     @SerializedName("langs")
     @Expose
-    var langs: Langs? = null
+    lateinit var langs: Langs
 }

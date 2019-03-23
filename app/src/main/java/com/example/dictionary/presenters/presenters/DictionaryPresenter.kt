@@ -17,6 +17,8 @@ import java.util.concurrent.Executors
 @InjectViewState
 class DictionaryPresenter : MvpPresenter<ViewDictionary>() {
 
+    private val sizeDefault: Int = 10
+
     private val modelCache: CacheModel
     private val translations: MutableList<InfoTranslation>
     private val dataSource: PositionalDataSource<InfoTranslation>
@@ -32,7 +34,7 @@ class DictionaryPresenter : MvpPresenter<ViewDictionary>() {
         dataSource = DictionaryDataSource(modelCache)
         config = PagedList.Config.Builder()
             .setEnablePlaceholders(false)
-            .setPageSize(App.instance.prefSettings.getInt("pagination", 10))
+            .setPageSize(App.instance.prefSettings.getInt("pagination", sizeDefault))
             .build()
         pagedList = PagedList.Builder(dataSource, config)
             .setFetchExecutor(Executors.newSingleThreadExecutor())

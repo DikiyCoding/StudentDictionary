@@ -26,6 +26,8 @@ import kotlin.reflect.full.memberProperties
 @InjectViewState
 class TranslationPresenter : MvpPresenter<ViewTranslation>(), ItemClickCallback, AdapterView.OnItemSelectedListener {
 
+    private val supLangSubStr: Int = 3
+
     private val modelCache: CacheModel
     private val modelTranslation: TranslationModel
     private val langs: MutableList<InfoLanguage>
@@ -122,13 +124,15 @@ class TranslationPresenter : MvpPresenter<ViewTranslation>(), ItemClickCallback,
         this.from = from
         this.textFrom = word
         modelTranslation.getTranslation(word, "${from.langSign}-${to.langSign}").subscribeBy(onSuccess = {
-            viewState.setTranslation(it.text!![0])
+            viewState.setTranslation(it.text?.get(0).toString())
             setCache(it)
         })
     }
 
     private fun setCache(translation: Translation) {
-        translations.add(InfoTranslation(textFrom, translation.text!![0], from.langSign, to.langSign, false))
+        translations.add(
+            InfoTranslation(textFrom, translation.text?.get(0).toString(), from.langSign, to.langSign, false)
+        )
         adapterCache.notifyDataSetChanged()
     }
 
@@ -156,7 +160,7 @@ class TranslationPresenter : MvpPresenter<ViewTranslation>(), ItemClickCallback,
      */
 
     private fun initListLanguage(langsAvailable: LangsAvailable) {
-        langsAvailable.langs!!::class.memberProperties.forEach {
+        langsAvailable.langs::class.memberProperties.forEach {
             if (it.visibility == KVisibility.PUBLIC) {
                 val info = InfoLanguage(it.name, it.getter.call(langsAvailable.langs) as String, ArrayList())
                 langsSearchable[it.name] = info
@@ -167,9 +171,9 @@ class TranslationPresenter : MvpPresenter<ViewTranslation>(), ItemClickCallback,
     }
 
     private fun initListSupportedLanguages(langsAvailable: LangsAvailable) {
-        for (dir in langsAvailable.dirs!!)
-            langsSearchable[dir.substring(0, 2)]!!
-                .supportedLanguages
-                .add(langsSearchable[dir.substring(3)]!!)
+        for (dir in langsAvailable.dirs)
+            langsSearchable[dir.substring(supLangSubStr)]?.let {
+                langsSearchable[dir.substring(0, 2)]?.supportedLanguages?.add(it)
+            }
     }
 }

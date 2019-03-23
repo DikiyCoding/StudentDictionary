@@ -30,9 +30,7 @@ class MenuActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean  {
         when(item.itemId) {
-            R.id.settings -> {
-                pagination.show(supportFragmentManager, "pagination")
-            }
+            R.id.settings -> pagination.show(supportFragmentManager, "pagination")
         }
         return super.onOptionsItemSelected(item)
     }
@@ -45,12 +43,8 @@ class MenuActivity : AppCompatActivity() {
 
     fun action(view: View) {
         when (view) {
-            btn_dictionary -> {
-                startActivity(dictionary)
-            }
-            btn_translation -> {
-                startActivity(translation)
-            }
+            btn_dictionary -> startActivity(dictionary)
+            btn_translation -> startActivity(translation)
         }
     }
 }
