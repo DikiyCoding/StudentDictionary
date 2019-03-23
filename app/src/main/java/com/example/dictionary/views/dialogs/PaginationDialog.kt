@@ -8,18 +8,16 @@ import android.view.View.OnClickListener
 import android.view.ViewGroup
 import com.example.dictionary.R
 import com.example.dictionary.presenters.utils.App
+import com.example.dictionary.presenters.utils.Constants
 import kotlinx.android.synthetic.main.dialog_pagination.*
 import kotlinx.android.synthetic.main.dialog_pagination.view.*
 
 class PaginationDialog : DialogFragment(), OnClickListener {
 
-    private val minValue: Int = 5
-    private val maxValue: Int = 20
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.dialog_pagination, null)
-        view.np_pagination.minValue = minValue
-        view.np_pagination.maxValue = maxValue
+        view.np_pagination.minValue = Constants.pageSizeMinValue
+        view.np_pagination.maxValue = Constants.pageSizeMaxValue
         view.btn_ok.setOnClickListener(this)
         view.btn_cancel.setOnClickListener(this)
         return view

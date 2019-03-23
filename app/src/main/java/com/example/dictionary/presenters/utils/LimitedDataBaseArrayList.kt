@@ -7,12 +7,10 @@ import java.util.*
 
 class LimitedDataBaseArrayList : ArrayList<InfoTranslation>() {
 
-    private val sizeMax = 14
-
     override fun add(element: InfoTranslation): Boolean {
         if (super.contains(element))
             return false
-        if (super.size == sizeMax)
+        if (super.size == Constants.transListSizeMax)
             this.remove(super.get(0))
         App.instance.
             modelCache.

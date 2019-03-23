@@ -1,8 +1,6 @@
 package com.example.dictionary.models.network.apis.utils
 
-import com.example.dictionary.models.network.apis.interfaces.OxfordDictionariesApi
 import com.example.dictionary.models.network.apis.interfaces.YandexTranslateApi
-
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -20,15 +18,11 @@ object ApiFactory {
 //        oxfordApi = buildRetrofit("Oxford url").create(OxfordDictionariesApi::class.java)
     }
 
-    fun getYandexApi(): YandexTranslateApi {
-//        val service = yandexApi
-        return yandexApi
-    }
+    fun getYandexApi(): YandexTranslateApi = yandexApi
 
-    /*fun getOxfordApi(): OxfordDictionariesApi {
-        val service = oxfordApi
-        return oxfordApi
-    }*/
+//    fun getOxfordApi(): OxfordDictionariesApi = oxfordApi
+
+    private fun getClient(): OkHttpClient = client
 
     private fun buildRetrofit(url: String): Retrofit {
         return Retrofit.Builder()
@@ -37,11 +31,6 @@ object ApiFactory {
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
-    }
-
-    private fun getClient(): OkHttpClient {
-        val client = ApiFactory.client
-        return client
     }
 
     private fun buildClient(): OkHttpClient {

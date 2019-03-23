@@ -14,6 +14,7 @@ import com.example.dictionary.presenters.adapters.TranslationAdapter
 import com.example.dictionary.presenters.pojos.InfoLanguage
 import com.example.dictionary.presenters.pojos.InfoTranslation
 import com.example.dictionary.presenters.utils.App
+import com.example.dictionary.presenters.utils.Constants
 import com.example.dictionary.presenters.utils.ItemClickCallback
 import com.example.dictionary.presenters.utils.LimitedDataBaseArrayList
 import com.example.dictionary.views.interfaces.ViewTranslation
@@ -25,8 +26,6 @@ import kotlin.reflect.full.memberProperties
 
 @InjectViewState
 class TranslationPresenter : MvpPresenter<ViewTranslation>(), ItemClickCallback, AdapterView.OnItemSelectedListener {
-
-    private val supLangSubStr: Int = 3
 
     private val modelCache: CacheModel
     private val modelTranslation: TranslationModel
@@ -172,7 +171,7 @@ class TranslationPresenter : MvpPresenter<ViewTranslation>(), ItemClickCallback,
 
     private fun initListSupportedLanguages(langsAvailable: LangsAvailable) {
         for (dir in langsAvailable.dirs)
-            langsSearchable[dir.substring(supLangSubStr)]?.let {
+            langsSearchable[dir.substring(Constants.supLangSubStr)]?.let {
                 langsSearchable[dir.substring(0, 2)]?.supportedLanguages?.add(it)
             }
     }
