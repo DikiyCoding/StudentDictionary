@@ -57,24 +57,36 @@ class TranslationActivity : MvpAppCompatActivity(), ViewTranslation, AdapterView
     }
 
     private fun createAdapters() {
+        createAdapterCache()
+        createAdapterFrom()
+        createAdapterTo()
+    }
+
+    private fun createAdapterFrom() {
+        adapterFrom = SpinnerAdapter(
+            this,
+            android.R.layout.simple_spinner_item,
+            presenter.getListLangs()
+        )
+        adapterFrom.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+    }
+
+    private fun createAdapterTo() {
+        adapterTo = SpinnerAdapter(
+            this,
+            android.R.layout.simple_spinner_item,
+            presenter.getListLangsSup()
+        )
+        adapterTo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+    }
+
+    private fun createAdapterCache() {
         adapterCache = TranslationAdapter(
             presenter.getListTransl(),
             presenter.getListLangsSearch()
         ) { action, position ->
             presenter.onItemClick(action, position)
         }
-        adapterFrom = SpinnerAdapter(
-            this,
-            android.R.layout.simple_spinner_item,
-            presenter.getListLangs()
-        )
-        adapterTo = SpinnerAdapter(
-            this,
-            android.R.layout.simple_spinner_item,
-            presenter.getListLangsSup()
-        )
-        adapterFrom.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        adapterTo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
     }
 
     private fun assignAdapters() {

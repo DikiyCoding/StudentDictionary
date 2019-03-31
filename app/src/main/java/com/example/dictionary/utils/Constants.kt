@@ -18,4 +18,9 @@ object Constants {
     const val YANDEX_BASE_URL = "https://translate.yandex.net/api/v1.5/tr.json/"
     const val YANDEX_LANGS_AVAILABLE = "getLangs?"
     const val YANDEX_TRANSLATION = "translate?"
+
+    /**
+     * Word Detail Activity
+     */
+    const val toastXOffset = 350
 }

@@ -33,20 +33,13 @@ class InfoTranslation(
         parcel.writeByte(if (isSaved) 1 else 0)
     }
 
-    override fun describeContents(): Int {
-        return 0
-    }
+    override fun describeContents(): Int = 0
 
     fun isSame(other: InfoTranslation): Boolean =
         other.valueFrom == valueFrom && other.valueTo == valueTo
 
     companion object CREATOR : Parcelable.Creator<InfoTranslation> {
-        override fun createFromParcel(parcel: Parcel): InfoTranslation {
-            return InfoTranslation(parcel)
-        }
-
-        override fun newArray(size: Int): Array<InfoTranslation?> {
-            return arrayOfNulls(size)
-        }
+        override fun createFromParcel(parcel: Parcel): InfoTranslation = InfoTranslation(parcel)
+        override fun newArray(size: Int): Array<InfoTranslation?> = arrayOfNulls(size)
     }
 }

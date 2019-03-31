@@ -14,6 +14,7 @@ import com.example.dictionary.R
 import com.example.dictionary.models.WordDetailModel
 import com.example.dictionary.pojos.InfoTranslation
 import com.example.dictionary.presenters.WordDetailPresenter
+import com.example.dictionary.utils.Constants
 import com.example.dictionary.views.interfaces.ViewWordDetail
 import kotlinx.android.synthetic.main.activity_word_detail.*
 
@@ -37,7 +38,7 @@ class WordDetailActivity : MvpAppCompatActivity(), ViewWordDetail {
     override fun showErrorMessage(message: String) {
         val toast: Toast =
             Toast.makeText(this, message, Toast.LENGTH_LONG)
-        toast.setGravity(Gravity.CENTER, 0, 200)
+        toast.setGravity(Gravity.CENTER, 0, Constants.toastXOffset)
         toast.show()
     }
 
