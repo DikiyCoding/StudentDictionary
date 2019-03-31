@@ -7,8 +7,8 @@ import android.view.View
 import android.view.View.OnClickListener
 import android.view.ViewGroup
 import com.example.dictionary.R
-import com.example.dictionary.presenters.utils.App
-import com.example.dictionary.presenters.utils.Constants
+import com.example.dictionary.utils.App
+import com.example.dictionary.utils.Constants
 import kotlinx.android.synthetic.main.dialog_pagination.*
 import kotlinx.android.synthetic.main.dialog_pagination.view.*
 
@@ -33,7 +33,13 @@ class PaginationDialog : DialogFragment(), OnClickListener {
 
     override fun onClick(view: View) {
         when (view) {
-            btn_ok -> App.instance.prefSettings.edit().putInt("pagination", np_pagination.value).apply()
+            btn_ok ->
+                App
+                .instance
+                .prefSettings
+                .edit()
+                .putInt("pagination", np_pagination.value)
+                .apply()
         }
         dismiss()
     }

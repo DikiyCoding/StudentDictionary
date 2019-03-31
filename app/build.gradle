@@ -43,13 +43,17 @@ android {
     androidExtensions { experimental = true }
 }
 
-dependencies {
+ext {
+    room = "1.1.1"
+    moxy = "1.5.5"
+    retrofit = "2.5.0"
+    support_library = "28.0.0"
+    paging_library = "1.0.1"
+    mockito = "2.8.9"
+    powermock = "2.0.0"
+}
 
-    def room = "1.1.1"
-    def moxy = "1.5.5"
-    def retrofit = "2.5.0"
-    def support_library = "28.0.0"
-    def paging_library = "1.0.1"
+dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "com.android.support:appcompat-v7:$support_library"
@@ -88,6 +92,12 @@ dependencies {
     implementation "android.arch.persistence.room:rxjava2:$room"
 
     testImplementation 'junit:junit:4.12'
+    testImplementation "org.mockito:mockito-core:$mockito"
+    testImplementation "org.mockito:mockito-inline:$mockito"
+    testImplementation "org.powermock:powermock-api-mockito2:$powermock"
+    testImplementation "org.powermock:powermock-module-junit4:$powermock"
+    testImplementation "org.powermock:powermock-module-junit4-rule:$powermock"
+    testImplementation "org.powermock:powermock-classloading-xstream:$powermock"
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
