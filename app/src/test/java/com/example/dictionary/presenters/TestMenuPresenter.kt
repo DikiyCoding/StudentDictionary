@@ -1,5 +1,6 @@
 package com.example.dictionary.presenters
 
+import com.example.dictionary.models.MenuModel
 import com.example.dictionary.views.interfaces.ViewMenu
 import com.example.dictionary.views.interfaces.`ViewMenu$$State`
 import org.junit.Before
@@ -16,6 +17,9 @@ class TestMenuPresenter {
 
     @Mock
     lateinit var mockViewState: `ViewMenu$$State`
+
+    @Mock
+    lateinit var model: MenuModel
 
     @InjectMocks
     @Spy
