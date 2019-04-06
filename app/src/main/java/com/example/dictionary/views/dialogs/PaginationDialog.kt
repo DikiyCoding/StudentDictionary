@@ -1,5 +1,6 @@
 package com.example.dictionary.views.dialogs
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.view.LayoutInflater
@@ -13,6 +14,9 @@ import kotlinx.android.synthetic.main.dialog_pagination.*
 import kotlinx.android.synthetic.main.dialog_pagination.view.*
 
 class PaginationDialog : DialogFragment(), OnClickListener {
+
+    private val preferences: SharedPreferences =
+        App.appComponent.getSharedPreferences()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.dialog_pagination, null)
@@ -34,11 +38,9 @@ class PaginationDialog : DialogFragment(), OnClickListener {
     override fun onClick(view: View) {
         when (view) {
             btn_ok ->
-                App
-                .instance
-                .prefSettings
+                preferences
                 .edit()
-                .putInt("pagination", np_pagination.value)
+                .putInt(Constants.KEY_PAGE, np_pagination.value)
                 .apply()
         }
         dismiss()

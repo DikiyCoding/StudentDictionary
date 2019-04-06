@@ -7,7 +7,8 @@ import com.example.dictionary.pojos.InfoTranslation
 import com.example.dictionary.views.interfaces.ViewDictionary
 
 @InjectViewState
-class DictionaryPresenter(private val model: DictionaryModel) : MvpPresenter<ViewDictionary>() {
+class DictionaryPresenter(private val model: DictionaryModel)
+    : MvpPresenter<ViewDictionary>() {
 
     fun getCallback() =
         model.callback

@@ -3,13 +3,18 @@ package com.example.dictionary.utils
 object Constants {
 
     /**
+     * Repository
+     */
+    const val DATABASE = "database"
+    const val PREFERENCES = "settings"
+    const val KEY_PAGE = "pagination"
+
+    /**
      * Paging Library
      */
-    const val supLangSubStr = 3
     const val pageSizeMinValue = 5
     const val pageSizeMaxValue = 20
     const val pageSizeDefValue = 10
-    const val transListSizeMax = 14
 
     /**
      * Yandex Translate API
@@ -23,4 +28,14 @@ object Constants {
      * Word Detail Activity
      */
     const val toastXOffset = 350
+
+    /**
+     * Translation Presenter
+     */
+    const val supLangSubStr = 3
+
+    /**
+     * Limited Database ArrayList
+     */
+    const val transListSizeMax = 14
 }

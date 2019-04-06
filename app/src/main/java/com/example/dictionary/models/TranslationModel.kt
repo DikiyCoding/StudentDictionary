@@ -3,14 +3,12 @@ package com.example.dictionary.models
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
-import com.example.dictionary.data.DataProvider
 import com.example.dictionary.data.TranslationData
 import com.example.dictionary.network.apis.yandex.LangsAvailable
 import com.example.dictionary.network.apis.yandex.Translation
 import com.example.dictionary.pojos.InfoLanguage
 import com.example.dictionary.pojos.InfoTranslation
 import com.example.dictionary.repository.CacheRepository
-import com.example.dictionary.repository.RepositoryProvider
 import com.example.dictionary.repository.TranslationRepository
 import com.example.dictionary.utils.CallbackTranslation
 import com.example.dictionary.utils.Constants
@@ -18,20 +16,29 @@ import io.reactivex.rxkotlin.subscribeBy
 import kotlin.reflect.KVisibility
 import kotlin.reflect.full.memberProperties
 
-class TranslationModel {
+class TranslationModel(
+    private val repositoryCache: CacheRepository,
+    private val dataTranslation: TranslationData,
+    private val repositoryTranslation: TranslationRepository
+) {
 
-    private val repositoryCache: CacheRepository =
-        RepositoryProvider().repositoryCache
-    private val dataTranslation: TranslationData =
-        DataProvider(repositoryCache).dataTranslation
-    private val repositoryTranslation: TranslationRepository =
-        RepositoryProvider().repositoryTranslation
+    /*@Inject
+    lateinit var repositoryCache: CacheRepository
+
+    @Inject
+    lateinit var dataTranslation: TranslationData
+
+    @Inject
+    lateinit var repositoryTranslation: TranslationRepository
+
+    @Inject
+    lateinit var callback: CallbackTranslation*/
+
+    lateinit var callback: CallbackTranslation
 
     private lateinit var from: InfoLanguage
     private lateinit var to: InfoLanguage
     private lateinit var textFrom: String
-
-    lateinit var callback: CallbackTranslation
 
     /**
      * Получаем ссылки на списки с данными

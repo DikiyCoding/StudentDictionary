@@ -7,7 +7,8 @@ import com.example.dictionary.pojos.InfoTranslation
 import com.example.dictionary.views.interfaces.ViewWordDetail
 
 @InjectViewState
-class WordDetailPresenter(private val model: WordDetailModel) : MvpPresenter<ViewWordDetail>() {
+class WordDetailPresenter(private val model: WordDetailModel)
+    : MvpPresenter<ViewWordDetail>() {
 
     private fun updateCache(valueFrom: String, valueTo: String) =
         model.updateCache(valueFrom, valueTo)

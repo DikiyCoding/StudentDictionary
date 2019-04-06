@@ -2,15 +2,11 @@ package com.example.dictionary.models
 
 import com.example.dictionary.pojos.InfoTranslation
 import com.example.dictionary.repository.CacheRepository
-import com.example.dictionary.repository.RepositoryProvider
 
-class WordDetailModel {
+class WordDetailModel(private val repositoryCache: CacheRepository) {
 
     lateinit var translation: InfoTranslation
     lateinit var save: InfoTranslation
-
-    private val repositoryCache: CacheRepository =
-        RepositoryProvider().repositoryCache
 
     fun updateCache(valueFrom: String, valueTo: String) {
         save = InfoTranslation(

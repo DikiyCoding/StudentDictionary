@@ -6,8 +6,8 @@ import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.example.dictionary.R
-import com.example.dictionary.models.DictionaryModel
 import com.example.dictionary.presenters.DictionaryPresenter
+import com.example.dictionary.utils.App
 import com.example.dictionary.views.adapters.DictionaryAdapter
 import com.example.dictionary.views.interfaces.ViewDictionary
 import kotlinx.android.synthetic.main.activity_dictionary.*
@@ -18,8 +18,8 @@ class DictionaryActivity : MvpAppCompatActivity(), ViewDictionary {
     lateinit var presenter: DictionaryPresenter
 
     @ProvidePresenter
-    fun provideDictionaryPresenter(): DictionaryPresenter =
-        DictionaryPresenter(DictionaryModel())
+    fun provideDictionaryPresenter()
+            : DictionaryPresenter = App.appComponent.getDictionaryPresenter()
 
     private lateinit var wordDetail: Intent
     private lateinit var adapterCache: DictionaryAdapter

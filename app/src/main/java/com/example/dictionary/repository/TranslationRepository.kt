@@ -1,9 +1,9 @@
 package com.example.dictionary.repository
 
-import com.example.dictionary.utils.ApiFactory
-import com.example.dictionary.utils.Constants
+import com.example.dictionary.network.apis.interfaces.YandexTranslateApi
 import com.example.dictionary.network.apis.yandex.LangsAvailable
 import com.example.dictionary.network.apis.yandex.Translation
+import com.example.dictionary.utils.Constants
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -16,19 +16,17 @@ import io.reactivex.schedulers.Schedulers
  * Oxford Dictionary API (для английского):
  * значение слова на английском;
  */
-class TranslationRepository {
+class TranslationRepository(private val yandex: YandexTranslateApi) {
 
     //TODO ApiKeyInterceptor
     fun getLanguages(): Single<LangsAvailable> =
-        ApiFactory
-            .getYandexApi()
+        yandex
             .getLangs(Constants.YANDEX_API_KEY, "ru")
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
 
     fun getTranslation(text: String, lang: String): Single<Translation> =
-        ApiFactory
-            .getYandexApi()
+        yandex
             .translate(Constants.YANDEX_API_KEY, text, lang)
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())

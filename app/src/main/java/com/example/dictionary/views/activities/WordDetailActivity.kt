@@ -11,9 +11,9 @@ import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.example.dictionary.R
-import com.example.dictionary.models.WordDetailModel
 import com.example.dictionary.pojos.InfoTranslation
 import com.example.dictionary.presenters.WordDetailPresenter
+import com.example.dictionary.utils.App
 import com.example.dictionary.utils.Constants
 import com.example.dictionary.views.interfaces.ViewWordDetail
 import kotlinx.android.synthetic.main.activity_word_detail.*
@@ -23,11 +23,11 @@ class WordDetailActivity : MvpAppCompatActivity(), ViewWordDetail {
     @InjectPresenter
     lateinit var presenter: WordDetailPresenter
 
-    private lateinit var item: InfoTranslation
-
     @ProvidePresenter
-    fun provideWordDetailPresenter(): WordDetailPresenter =
-        WordDetailPresenter(WordDetailModel())
+    fun provideWordDetailPresenter()
+            : WordDetailPresenter =  App.appComponent.getWordDetailPresenter()
+
+    private lateinit var item: InfoTranslation
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

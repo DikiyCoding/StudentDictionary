@@ -7,9 +7,9 @@ import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.example.dictionary.R
-import com.example.dictionary.models.TranslationModel
 import com.example.dictionary.pojos.InfoLanguage
 import com.example.dictionary.presenters.TranslationPresenter
+import com.example.dictionary.utils.App
 import com.example.dictionary.views.adapters.SpinnerAdapter
 import com.example.dictionary.views.adapters.TranslationAdapter
 import com.example.dictionary.views.interfaces.ViewTranslation
@@ -20,13 +20,13 @@ class TranslationActivity : MvpAppCompatActivity(), ViewTranslation, AdapterView
     @InjectPresenter
     lateinit var presenter: TranslationPresenter
 
+    @ProvidePresenter
+    fun provideTranslationPresenter()
+            : TranslationPresenter = App.appComponent.getTranslationPresenter()
+
     private lateinit var adapterCache: TranslationAdapter
     private lateinit var adapterFrom: SpinnerAdapter
     private lateinit var adapterTo: SpinnerAdapter
-
-    @ProvidePresenter
-    fun provideTranslationPresenter(): TranslationPresenter
-            = TranslationPresenter(TranslationModel())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,28 +1,26 @@
 package com.example.dictionary.utils
 
 import android.app.Application
-import android.arch.persistence.room.Room
-import android.content.Context
-import android.content.SharedPreferences
-import com.example.dictionary.database.AppDataBase
+import com.example.dictionary.di.components.AppComponent
+import com.example.dictionary.di.components.DaggerAppComponent
+import com.example.dictionary.di.modules.*
 
 class App : Application() {
 
-    lateinit var dataBase: AppDataBase
-        private set
-    lateinit var prefSettings: SharedPreferences
-        private set
-
     override fun onCreate() {
         super.onCreate()
-        instance = this
-        prefSettings = getSharedPreferences("settings", Application.MODE_PRIVATE)
-        dataBase = Room.databaseBuilder(this, AppDataBase::class.java, "database").build()
+        appComponent = DaggerAppComponent.builder()
+            .moduleApp(ModuleApp(this))
+            .moduleModel(ModuleModel())
+            .moduleNetwork(ModuleNetwork())
+            .modulePagedList(ModulePagedList())
+            .modulePresenter(ModulePresenter())
+            .moduleRepository(ModuleRepository())
+            .moduleService(ModuleService())
+            .build()
     }
 
     companion object {
-        lateinit var instance: App
-            private set
-        fun appContext(): Context = instance.applicationContext
+        lateinit var appComponent: AppComponent
     }
 }
