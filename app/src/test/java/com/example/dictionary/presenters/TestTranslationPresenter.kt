@@ -15,6 +15,7 @@ import org.mockito.Mock
 import org.mockito.Mockito.*
 import org.mockito.Spy
 import org.mockito.junit.MockitoJUnitRunner
+import ru.terrakok.cicerone.Router
 
 @RunWith(MockitoJUnitRunner::class)
 class TestTranslationPresenter {
@@ -24,6 +25,9 @@ class TestTranslationPresenter {
 
     @Mock
     lateinit var model: TranslationModel
+
+    @Mock
+    lateinit var router: Router
 
     @InjectMocks
     @Spy

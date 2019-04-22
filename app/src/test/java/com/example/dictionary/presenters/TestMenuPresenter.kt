@@ -11,6 +11,7 @@ import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.Spy
 import org.mockito.junit.MockitoJUnitRunner
+import ru.terrakok.cicerone.Router
 
 @RunWith(MockitoJUnitRunner::class)
 class TestMenuPresenter {
@@ -20,6 +21,9 @@ class TestMenuPresenter {
 
     @Mock
     lateinit var model: MenuModel
+
+    @Mock
+    lateinit var router: Router
 
     @InjectMocks
     @Spy

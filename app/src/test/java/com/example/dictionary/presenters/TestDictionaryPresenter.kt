@@ -14,6 +14,7 @@ import org.mockito.Mock
 import org.mockito.Mockito.*
 import org.mockito.Spy
 import org.mockito.junit.MockitoJUnitRunner
+import ru.terrakok.cicerone.Router
 
 @RunWith(MockitoJUnitRunner::class)
 class TestDictionaryPresenter {
@@ -23,6 +24,9 @@ class TestDictionaryPresenter {
 
     @Mock
     lateinit var model: DictionaryModel
+
+    @Mock
+    lateinit var router: Router
 
     @InjectMocks
     @Spy

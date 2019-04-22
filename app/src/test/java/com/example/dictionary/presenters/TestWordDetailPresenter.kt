@@ -13,6 +13,7 @@ import org.mockito.Mock
 import org.mockito.Mockito.*
 import org.mockito.Spy
 import org.mockito.junit.MockitoJUnitRunner
+import ru.terrakok.cicerone.Router
 
 @RunWith(MockitoJUnitRunner::class)
 class TestWordDetailPresenter {
@@ -27,6 +28,9 @@ class TestWordDetailPresenter {
 
     @Mock
     lateinit var model: WordDetailModel
+
+    @Mock
+    lateinit var router: Router
 
     @InjectMocks
     @Spy
