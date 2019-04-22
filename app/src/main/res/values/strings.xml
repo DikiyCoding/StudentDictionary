@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">StudentDictionary</string>
+    <string name="btn_settings">Settings</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_ok">OK</string>
+    <string name="tv_translate">Перевести</string>
+    <string name="tv_dictionary">Dictionary</string>
+    <string name="tv_translation">Translation</string>
+    <string name="tv_navigation">Navigation</string>
+    <string name="tv_home_page">Home Fragment</string>
+    <string name="tv_first_page">First Page</string>
+    <string name="tv_second_page">Second Page</string>
+    <string name="tv_third_page">Third Page</string>
+    <string name="tv_fourth_page">Fourth Page</string>
+    <string name="tv_fifth_page">Fifth Page</string>
+    <string name="tv_sixth_page">Sixth Page</string>
+    <string name="tv_seventh_page">Seventh Page</string>
+    <string name="tv_to_fourth">To fourth page</string>
+    <string name="tv_to_fifth">To fifth page</string>
+    <string name="tv_to_sixth">To sixth page</string>
+    <string name="tv_to_seventh">To seventh page</string>
+    <string name="tv_to_translation">To translation page</string>
+    <string name="et_hint">Change Sixth TextView</string>
+
 </resources>

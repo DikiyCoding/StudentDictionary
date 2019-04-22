@@ -55,7 +55,7 @@ output-reports:
 comments:
   active: true
   CommentOverPrivateFunction:
-    active: true
+    active: false
   CommentOverPrivateProperty:
     active: true
   UndocumentedPublicClass:

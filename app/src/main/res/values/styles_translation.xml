@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="sp_trans">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">0.5</item>
+    </style>
+
+    <style name="cv_trans">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+    </style>
+
+    <style name="cv_trans.et">
+        <item name="android:layout_height">50dp</item>
+    </style>
+
+    <style name="cv_trans.list">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+
+    <style name="et_trans">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_margin">8dp</item>
+        <!--<item name="android:fontFamily" tools:targetApi="jelly_bean"></item>
+        <item name="android:textColor"></item>
+        <item name="android:textColorHint">@color/lightGrey</item>-->
+        <item name="android:textSize">18sp</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="background">@null</item>
+        <item name="android:inputType">textMultiLine</item>
+        <item name="android:lines">8</item>
+        <item name="android:maxLines">10</item>
+        <item name="android:minLines">6</item>
+        <item name="android:scrollbars">vertical</item>
+    </style>
+
+</resources>
