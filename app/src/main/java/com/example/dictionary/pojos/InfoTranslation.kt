@@ -1,6 +1,7 @@
 package com.example.dictionary.pojos
 
-import android.arch.persistence.room.*
+import android.arch.persistence.room.ColumnInfo
+import android.arch.persistence.room.Entity
 import android.os.Parcel
 import android.os.Parcelable
 
@@ -15,7 +16,8 @@ class InfoTranslation(
     @ColumnInfo(name = "language_to")
     var langTo: String,
     @ColumnInfo(name = "is_saved")
-    var isSaved: Boolean): Parcelable {
+    var isSaved: Boolean
+) : Parcelable {
 
     constructor(parcel: Parcel) : this(
         parcel.readString(),

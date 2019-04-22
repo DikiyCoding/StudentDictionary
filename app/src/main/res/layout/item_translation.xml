@@ -16,7 +16,7 @@
                 android:layout_height="match_parent"
                 android:maxWidth="0dp"
                 android:layout_marginStart="24dp"
-                android:gravity="center|left"/>
+                android:gravity="center|start"/>
 
         <TextView
                 android:id="@+id/tv_lang_to"
@@ -24,7 +24,7 @@
                 android:layout_height="match_parent"
                 android:maxWidth="0dp"
                 android:layout_marginEnd="24dp"
-                android:gravity="center|right"/>
+                android:gravity="center|end"/>
 
         <ImageButton
                 android:id="@+id/btn_save"
@@ -47,7 +47,7 @@
                 android:layout_height="match_parent"
                 android:maxWidth="0dp"
                 android:layout_marginStart="24dp"
-                android:gravity="center|left"/>
+                android:gravity="center|start"/>
 
         <TextView
                 android:id="@+id/tv_value_to"
@@ -55,7 +55,7 @@
                 android:layout_height="match_parent"
                 android:maxWidth="0dp"
                 android:layout_marginEnd="24dp"
-                android:gravity="center|right"/>
+                android:gravity="center|end"/>
 
         <ImageButton
                 android:id="@+id/btn_delete"

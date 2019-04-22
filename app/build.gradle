@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'androidx.navigation.safeargs'
 
 detekt {
     version = "1.0.0-RC14"
@@ -56,6 +57,8 @@ ext {
     mockito = "2.8.9"
     powermock = "2.0.0"
     dagger = "2.22.1"
+    cicerone = "4.0.0"
+    nav_component = "1.0.0"
 }
 
 dependencies {
@@ -91,14 +94,17 @@ dependencies {
 
     //Room
     kapt "android.arch.persistence.room:compiler:$room"
-    annotationProcessor "android.arch.persistence.room:compiler:$room"
     implementation "android.arch.persistence.room:runtime:$room"
     implementation "android.arch.persistence.room:rxjava2:$room"
 
     //Dagger 2
     kapt "com.google.dagger:dagger-compiler:$dagger"
-    annotationProcessor "com.google.dagger:dagger-compiler:$dagger"
     implementation "com.google.dagger:dagger:$dagger"
+
+    //Navigation
+    implementation "ru.terrakok.cicerone:cicerone:$cicerone"                    //Cicerone
+    implementation "android.arch.navigation:navigation-fragment:$nav_component" //Android Navigation Component
+    implementation "android.arch.navigation:navigation-ui:$nav_component"
 
     //JUnit, Mockito, PowerMock
     testImplementation "junit:junit:$junit"

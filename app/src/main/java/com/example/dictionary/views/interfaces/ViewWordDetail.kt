@@ -8,5 +8,5 @@ import com.example.dictionary.pojos.InfoTranslation
 @StateStrategyType(value = OneExecutionStateStrategy::class)
 interface ViewWordDetail : MvpView {
     fun showErrorMessage(message: String)
-    fun updateValues(item: InfoTranslation)
+    fun updateValues(item: InfoTranslation?)
 }

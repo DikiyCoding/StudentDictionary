@@ -5,10 +5,13 @@ import com.arellomobile.mvp.MvpPresenter
 import com.example.dictionary.models.WordDetailModel
 import com.example.dictionary.pojos.InfoTranslation
 import com.example.dictionary.views.interfaces.ViewWordDetail
+import ru.terrakok.cicerone.Router
 
 @InjectViewState
-class WordDetailPresenter(private val model: WordDetailModel)
-    : MvpPresenter<ViewWordDetail>() {
+class WordDetailPresenter(
+    private val model: WordDetailModel,
+    private val router: Router
+) : MvpPresenter<ViewWordDetail>() {
 
     private fun updateCache(valueFrom: String, valueTo: String) =
         model.updateCache(valueFrom, valueTo)

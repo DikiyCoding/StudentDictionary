@@ -8,10 +8,13 @@ import com.example.dictionary.models.TranslationModel
 import com.example.dictionary.pojos.InfoLanguage
 import com.example.dictionary.utils.CallbackTranslation
 import com.example.dictionary.views.interfaces.ViewTranslation
+import ru.terrakok.cicerone.Router
 
 @InjectViewState
-class TranslationPresenter(private val model: TranslationModel)
-    : MvpPresenter<ViewTranslation>(), CallbackTranslation {
+class TranslationPresenter(
+    private val model: TranslationModel,
+    private val router: Router
+) : MvpPresenter<ViewTranslation>(), CallbackTranslation {
 
     init {
         model.callback = this

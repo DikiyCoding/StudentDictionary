@@ -16,7 +16,7 @@
             android:id="@+id/btn_ok"
             android:layout_width="100dp"
             android:layout_height="40dp"
-            android:layout_gravity="bottom|right"
+            android:layout_gravity="bottom|end"
             android:text="@string/btn_ok"/>
 
     <Button

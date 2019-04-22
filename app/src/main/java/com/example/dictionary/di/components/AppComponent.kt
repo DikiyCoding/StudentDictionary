@@ -1,12 +1,12 @@
 package com.example.dictionary.di.components
 
+import android.content.Context
 import android.content.SharedPreferences
 import com.example.dictionary.di.modules.*
-import com.example.dictionary.presenters.DictionaryPresenter
-import com.example.dictionary.presenters.MenuPresenter
-import com.example.dictionary.presenters.TranslationPresenter
-import com.example.dictionary.presenters.WordDetailPresenter
+import com.example.dictionary.presenters.*
 import dagger.Component
+import ru.terrakok.cicerone.NavigatorHolder
+import ru.terrakok.cicerone.Router
 import javax.inject.Singleton
 
 @Singleton
@@ -14,6 +14,7 @@ import javax.inject.Singleton
     modules = [
         ModuleApp::class,
         ModuleModel::class,
+        ModuleNavigation::class,
         ModuleNetwork::class,
         ModulePagedList::class,
         ModulePresenter::class,
@@ -31,8 +32,12 @@ interface AppComponent {
     fun getMenuPresenter(): MenuPresenter
     fun getTranslationPresenter(): TranslationPresenter
     fun getWordDetailPresenter(): WordDetailPresenter
+    fun getContainerPresenter(): ContainerPresenter
 
+    fun getNavigatorHolder(): NavigatorHolder
     fun getSharedPreferences(): SharedPreferences
+    fun getRouter(): Router
+    fun getContext(): Context
 
     /*fun inject(dictionaryModel: DictionaryModel)
     fun inject(menuModel: MenuModel)

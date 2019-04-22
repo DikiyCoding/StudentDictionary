@@ -17,9 +17,11 @@ class TranslationAdapter(
 ) : RecyclerView.Adapter<TranslationAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-        ViewHolder(LayoutInflater
-            .from(parent.context)
-            .inflate(R.layout.item_translation, parent, false))
+        ViewHolder(
+            LayoutInflater
+                .from(parent.context)
+                .inflate(R.layout.item_translation, parent, false)
+        )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val info = this.infoTrans[position]

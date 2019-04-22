@@ -5,4 +5,4 @@ import com.arellomobile.mvp.viewstate.strategy.OneExecutionStateStrategy
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
 
 @StateStrategyType(value = OneExecutionStateStrategy::class)
-interface ViewDictionary : MvpView
+interface ViewContainer : MvpView

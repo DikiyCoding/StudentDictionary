@@ -39,9 +39,9 @@ class PaginationDialog : DialogFragment(), OnClickListener {
         when (view) {
             btn_ok ->
                 preferences
-                .edit()
-                .putInt(Constants.KEY_PAGE, np_pagination.value)
-                .apply()
+                    .edit()
+                    .putInt(Constants.KEY_PAGE, np_pagination.value)
+                    .apply()
         }
         dismiss()
     }

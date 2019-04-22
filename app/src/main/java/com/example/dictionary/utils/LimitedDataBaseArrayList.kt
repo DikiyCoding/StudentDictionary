@@ -13,7 +13,7 @@ class LimitedDataBaseArrayList(private val repositoryCache: CacheRepository) : A
             return false
         if (super.size == Constants.transListSizeMax)
             this.remove(super.get(0))
-            repositoryCache
+        repositoryCache
             .setCache(element)
             .subscribeBy(onComplete = { Log.i("Logs", "Элемент добавлен!!!") })
         return super.add(element)
@@ -22,7 +22,7 @@ class LimitedDataBaseArrayList(private val repositoryCache: CacheRepository) : A
     override fun remove(element: InfoTranslation): Boolean {
         if (!super.contains(element))
             return false
-            repositoryCache
+        repositoryCache
             .deleteCache(element).subscribeBy(onComplete = { Log.i("Logs", "Элемент удалён!!!") })
         return super.remove(element)
     }

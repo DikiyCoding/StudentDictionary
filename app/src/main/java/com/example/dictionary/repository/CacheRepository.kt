@@ -11,13 +11,13 @@ class CacheRepository(private val dao: TranslationDao) {
 
     fun getCache(): Single<List<InfoTranslation>> =
         dao.getAll()
-           .subscribeOn(Schedulers.io())
-           .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
 
     fun getCache(position: Int, size: Int): Single<List<InfoTranslation>> =
         dao.getAll(position, size)
-           .subscribeOn(Schedulers.io())
-           .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
 
     fun setCache(translation: InfoTranslation): Completable =
         Completable.fromAction {
@@ -35,8 +35,8 @@ class CacheRepository(private val dao: TranslationDao) {
 
     fun getCacheByValues(valueFrom: String, valueTo: String): Single<InfoTranslation> =
         dao.getByTranslation(valueFrom, valueTo)
-           .subscribeOn(Schedulers.io())
-           .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
 
     fun deleteCache(translation: InfoTranslation): Completable =
         Completable.fromAction {

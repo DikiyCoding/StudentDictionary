@@ -12,6 +12,7 @@ class App : Application() {
         appComponent = DaggerAppComponent.builder()
             .moduleApp(ModuleApp(this))
             .moduleModel(ModuleModel())
+            .moduleNavigation(ModuleNavigation())
             .moduleNetwork(ModuleNetwork())
             .modulePagedList(ModulePagedList())
             .modulePresenter(ModulePresenter())

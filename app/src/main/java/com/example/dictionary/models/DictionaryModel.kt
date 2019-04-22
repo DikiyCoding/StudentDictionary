@@ -9,6 +9,6 @@ class DictionaryModel(
     val pagedList: PagedList<InfoTranslation>
 ) {
 
-    fun getItem(position: Int): InfoTranslation? =
-        pagedList[position]
+    fun getItem(position: Int): InfoTranslation =
+        pagedList[position] as InfoTranslation
 }

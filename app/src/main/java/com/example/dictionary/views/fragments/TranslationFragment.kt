@@ -1,9 +1,11 @@
-package com.example.dictionary.views.activities
+package com.example.dictionary.views.fragments
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.AdapterView
-import com.arellomobile.mvp.MvpAppCompatActivity
+import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.example.dictionary.R
@@ -13,9 +15,9 @@ import com.example.dictionary.utils.App
 import com.example.dictionary.views.adapters.SpinnerAdapter
 import com.example.dictionary.views.adapters.TranslationAdapter
 import com.example.dictionary.views.interfaces.ViewTranslation
-import kotlinx.android.synthetic.main.activity_translation.*
+import kotlinx.android.synthetic.main.fragment_translation.view.*
 
-class TranslationActivity : MvpAppCompatActivity(), ViewTranslation, AdapterView.OnItemSelectedListener {
+class TranslationFragment : MvpAppCompatFragment(), ViewTranslation, AdapterView.OnItemSelectedListener {
 
     @InjectPresenter
     lateinit var presenter: TranslationPresenter
@@ -28,16 +30,22 @@ class TranslationActivity : MvpAppCompatActivity(), ViewTranslation, AdapterView
     private lateinit var adapterFrom: SpinnerAdapter
     private lateinit var adapterTo: SpinnerAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_translation)
-        init()
+    private lateinit var currentView: View
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        return inflater.inflate(R.layout.fragment_translation, null)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        currentView = view
+        init(view)
     }
 
     override fun onNothingSelected(parent: AdapterView<*>) {}
 
     override fun setTranslation(translation: String) =
-        et_trans_to.setText(translation)
+        currentView.et_trans_to.setText(translation)
 
     override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) =
         presenter.onItemSelected(parent, view, position, id)
@@ -51,9 +59,10 @@ class TranslationActivity : MvpAppCompatActivity(), ViewTranslation, AdapterView
     override fun setCache() =
         adapterCache.notifyDataSetChanged()
 
-    private fun init() {
+    private fun init(view: View) {
         createAdapters()
-        assignAdapters()
+        assignAdapters(view)
+        setTranslateListener(view)
     }
 
     private fun createAdapters() {
@@ -64,7 +73,7 @@ class TranslationActivity : MvpAppCompatActivity(), ViewTranslation, AdapterView
 
     private fun createAdapterFrom() {
         adapterFrom = SpinnerAdapter(
-            this,
+            App.appComponent.getContext(),
             android.R.layout.simple_spinner_item,
             presenter.getListLangs()
         )
@@ -73,7 +82,7 @@ class TranslationActivity : MvpAppCompatActivity(), ViewTranslation, AdapterView
 
     private fun createAdapterTo() {
         adapterTo = SpinnerAdapter(
-            this,
+            App.appComponent.getContext(),
             android.R.layout.simple_spinner_item,
             presenter.getListLangsSup()
         )
@@ -89,18 +98,19 @@ class TranslationActivity : MvpAppCompatActivity(), ViewTranslation, AdapterView
         }
     }
 
-    private fun assignAdapters() {
-        spin_transl_from.adapter = adapterFrom
-        spin_transl_from.onItemSelectedListener = this
-        spin_transl_to.adapter = adapterTo
-        list_translations.adapter = adapterCache
+    private fun assignAdapters(view: View) {
+        view.spin_transl_from.adapter = adapterFrom
+        view.spin_transl_from.onItemSelectedListener = this
+        view.spin_transl_to.adapter = adapterTo
+        view.list_translations.adapter = adapterCache
     }
 
-    fun translate(view: View) {
-        presenter.translate(
-            et_trans_from.text.toString(),
-            spin_transl_from.selectedItem as InfoLanguage,
-            spin_transl_to.selectedItem as InfoLanguage
-        )
-    }
+    private fun setTranslateListener(view: View) =
+        view.btn_trans.setOnClickListener {
+            presenter.translate(
+                view.et_trans_from.text.toString(),
+                view.spin_transl_from.selectedItem as InfoLanguage,
+                view.spin_transl_to.selectedItem as InfoLanguage
+            )
+        }
 }

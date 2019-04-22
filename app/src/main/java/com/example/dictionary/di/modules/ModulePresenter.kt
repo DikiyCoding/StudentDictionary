@@ -1,32 +1,31 @@
 package com.example.dictionary.di.modules
 
-import com.example.dictionary.models.DictionaryModel
-import com.example.dictionary.models.MenuModel
-import com.example.dictionary.models.TranslationModel
-import com.example.dictionary.models.WordDetailModel
-import com.example.dictionary.presenters.DictionaryPresenter
-import com.example.dictionary.presenters.MenuPresenter
-import com.example.dictionary.presenters.TranslationPresenter
-import com.example.dictionary.presenters.WordDetailPresenter
+import com.example.dictionary.models.*
+import com.example.dictionary.presenters.*
 import dagger.Module
 import dagger.Provides
+import ru.terrakok.cicerone.Router
 
 @Module
 class ModulePresenter {
 
     @Provides
-    fun provideDictionaryPresenter(model: DictionaryModel)
-            : DictionaryPresenter = DictionaryPresenter(model)
+    fun provideDictionaryPresenter(model: DictionaryModel, router: Router)
+            : DictionaryPresenter = DictionaryPresenter(model, router)
 
     @Provides
-    fun provideMenuPresenter(model: MenuModel)
-            : MenuPresenter = MenuPresenter(model)
+    fun provideMenuPresenter(model: MenuModel, router: Router)
+            : MenuPresenter = MenuPresenter(model, router)
 
     @Provides
-    fun provideTranslationPresenter(model: TranslationModel)
-            : TranslationPresenter = TranslationPresenter(model)
+    fun provideTranslationPresenter(model: TranslationModel, router: Router)
+            : TranslationPresenter = TranslationPresenter(model, router)
 
     @Provides
-    fun provideWordDetailPresenter(model: WordDetailModel)
-            : WordDetailPresenter = WordDetailPresenter(model)
+    fun provideWordDetailPresenter(model: WordDetailModel, router: Router)
+            : WordDetailPresenter = WordDetailPresenter(model, router)
+
+    @Provides
+    fun provideContainerPresenter(model: ContainerModel, router: Router)
+            : ContainerPresenter = ContainerPresenter(model, router)
 }

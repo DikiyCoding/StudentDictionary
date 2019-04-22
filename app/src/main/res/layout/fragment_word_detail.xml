@@ -5,7 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".views.activities.WordDetailActivity">
+        tools:context=".views.fragments.WordDetailFragment">
 
     <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -37,7 +37,6 @@
                 android:layout_height="40dp"
                 android:src="@drawable/ic_edit"
                 android:background="@null"
-                android:onClick="action"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="@+id/et_trans_from"
                 app:layout_constraintTop_toTopOf="@+id/et_trans_from"/>
@@ -67,7 +66,6 @@
                 android:layout_height="40dp"
                 android:src="@drawable/ic_edit"
                 android:background="@null"
-                android:onClick="action"
                 app:layout_constraintTop_toTopOf="@+id/et_trans_to"
                 app:layout_constraintBottom_toBottomOf="@+id/et_trans_to"
                 app:layout_constraintEnd_toEndOf="parent"/>
@@ -80,7 +78,6 @@
                 android:layout_marginEnd="16dp"
                 android:src="@drawable/ic_reject"
                 android:background="@null"
-                android:onClick="action"
                 app:layout_constraintTop_toBottomOf="@+id/et_trans_to"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/btn_save"
@@ -93,7 +90,6 @@
                 android:layout_marginStart="16dp"
                 android:src="@drawable/ic_approve"
                 android:background="@null"
-                android:onClick="action"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/btn_return"
                 app:layout_constraintBottom_toBottomOf="@+id/btn_return"/>
