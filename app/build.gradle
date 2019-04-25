@@ -100,7 +100,7 @@ dependencies {
     annotationProcessor "com.google.dagger:dagger-compiler:$dagger"
     implementation "com.google.dagger:dagger:$dagger"
 
-    //JUnit, Mockito, PowerMock
+    //JUnit, Mockito, PowerMock, Espresso
     testImplementation "junit:junit:$junit"
     testImplementation "org.mockito:mockito-core:$mockito"
     testImplementation "org.mockito:mockito-inline:$mockito"
@@ -108,8 +108,12 @@ dependencies {
     testImplementation "org.powermock:powermock-module-junit4:$powermock"
     testImplementation "org.powermock:powermock-module-junit4-rule:$powermock"
     testImplementation "org.powermock:powermock-classloading-xstream:$powermock"
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-contrib:3.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-intents:3.0.2'
+//    androidTestImplementation 'com.android.support.test.uiautomator:uiautomator:2.2.0'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test:rules:1.0.2'
 }
 
 repositories {
